@@ -1,0 +1,108 @@
+@use "top";
+@use "modal";
+html {
+    box-sizing: border-box;
+}
+
+header {
+  display: flex; /* フレックスボックスを使用 */
+  align-items: center; /* 垂直方向に中央揃え */
+  justify-content: space-between; /* 子要素間の空間を均等に */
+  padding: 0 20px;
+  background: #ed9517;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  height: 5rem;
+  border-top: 1px solid #969696;
+  border-bottom: 1px solid #969696;
+}
+
+.site-img {
+  width: 3rem; /* ロゴの幅 */
+  height: auto;
+}
+
+.header-items {
+  display: flex; /* 各要素を横並びに */
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+  gap: 15px;
+}
+
+.to-another-page {
+  display: inline-flex; /* 各リンクをボタンのように整形 */
+  justify-content: center;
+  align-items: center;
+  width: 7rem; /* 幅を統一 */
+  height: 100%; /* ヘッダー全体に高さを合わせる */
+  line-height: 5rem;
+}
+
+.to-another-page a {
+  text-decoration: none; /* アンダーラインを削除 */
+  color: inherit; /* テキストカラーを継承 */
+}
+
+.to-another-page:hover {
+  background-color: white; /* ホバー時の背景色 */
+}
+
+
+.site-img {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.site-img img {
+  width: 15rem;
+}
+
+.header-items {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 20px; 
+}
+
+.to-another-page a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+#search-bar {
+  height: 30px; 
+  width: 200px; 
+  padding: 5px 10px; 
+  border: 1px solid rgb(211, 10, 10); 
+
+  border-radius: 9999px; 
+  font-size: 14px; 
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    #movies {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .movie-card {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .movie-card h3 {
+      font-size: 16px;
+    }
+  }
