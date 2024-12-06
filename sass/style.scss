@@ -1,13 +1,14 @@
 @use "top";
 @use "modal";
+@use "tv";
 html {
     box-sizing: border-box;
 }
 
 header {
-  display: flex; /* フレックスボックスを使用 */
-  align-items: center; /* 垂直方向に中央揃え */
-  justify-content: space-between; /* 子要素間の空間を均等に */
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
   padding: 0 20px;
   background: #ed9517;
   position: sticky;
@@ -19,33 +20,34 @@ header {
 }
 
 .site-img {
-  width: 3rem; /* ロゴの幅 */
+  width: 3rem; 
   height: auto;
 }
 
 .header-items {
-  display: flex; /* 各要素を横並びに */
-  justify-content: center; /* 水平方向の中央揃え */
-  align-items: center; /* 垂直方向の中央揃え */
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
   gap: 15px;
 }
 
 .to-another-page {
-  display: inline-flex; /* 各リンクをボタンのように整形 */
+  display: inline-flex; 
   justify-content: center;
   align-items: center;
-  width: 7rem; /* 幅を統一 */
-  height: 100%; /* ヘッダー全体に高さを合わせる */
+  width: 7rem; 
+  height: 100%; 
   line-height: 5rem;
 }
 
-.to-another-page a {
-  text-decoration: none; /* アンダーラインを削除 */
-  color: inherit; /* テキストカラーを継承 */
+a .to-another-page  {
+  text-decoration: none; 
+  color: #000; 
 }
 
 .to-another-page:hover {
-  background-color: white; /* ホバー時の背景色 */
+  background-color: white; 
+  color: rgb(84, 220, 47);
 }
 
 

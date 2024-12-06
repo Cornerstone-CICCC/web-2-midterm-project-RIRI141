@@ -13,6 +13,7 @@ function fetchTrendingMovies() {
     options
   )
     .then((res) => res.json())
+    // .then((res) => console.log(res.results))
     .then((res) => displayMovies(res.results))
     .catch((err) => console.error(err));
 }
@@ -61,6 +62,61 @@ function displayMovies(movies) {
     moviesContainer.appendChild(movieCard);
   });
 }
+
+function fetchTrendingTVShows() {
+  fetch("https://api.themoviedb.org/3/trending/tv/day?language=en-US", options)
+    .then((res) => res.json())
+    .then((res) => displayTVShows(res.results))
+    .catch((err) => console.error(err));
+}
+
+function displayTVShows(tvShows) {
+  const tvShowsContainer = document.getElementById("tv-shows");
+  tvShowsContainer.innerHTML = "";
+  tvShows.forEach((show) => {
+    const tvShowCard = document.createElement("div");
+    tvShowCard.className = "tv-show-card";
+
+    tvShowCard.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
+        <h3>${show.name}</h3> 
+      `;
+
+    tvShowCard.addEventListener("click", () => openModal(show));
+
+    function openModal(show) {
+      const overlay = document.createElement("div");
+      overlay.className = "overlay";
+
+      const modal = document.createElement("div");
+      modal.className = "modal";
+
+      modal.innerHTML = `
+      <div class="modal-container">
+       <div class="modal-img">
+         <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
+       </div>
+       <div class="modal-text">
+         <h2>${show.name}</h2>
+         <p>${show.overview}</p>
+         <p>First Air Date: ${show.first_air_date}</p> 
+       </div>
+      </div>
+      `;
+
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+          document.body.removeChild(overlay);
+        }
+      });
+    }
+    tvShowsContainer.appendChild(tvShowCard);
+  });
+}
+
 // function fetchMoviesVideos() {
 //   fetch(
 //     "https://api.themoviedb.org/3/movie/movie_id/videos?language=en-US",
@@ -92,4 +148,5 @@ function showtoday() {
   return showtoday;
 }
 
-window.onload = fetchTrendingMovies;
+window.addEventListener("load", fetchTrendingMovies);
+window.addEventListener("load", fetchTrendingTVShows);
