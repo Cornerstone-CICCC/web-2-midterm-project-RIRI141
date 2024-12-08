@@ -44,7 +44,7 @@
     align-items: center;
     justify-content: center;
     padding: 100px; 
-    border: 3px solid rgb(84, 220, 47);
+    border: 3px solid rgb(232, 221, 9);
     background-color: #ede8e8; 
     // text-shadow: #cd2727 2px 2px 2px;
     border-radius: 8px; 
@@ -52,7 +52,10 @@
     margin: 0 auto; 
     text-align: center; 
   }
-  
+  body.dark-mode .container2{
+    background-color: #312f2f;
+    border-color: rgb(84, 220, 47);
+  }
   .title2 {
     font-size: 1.8rem; 
     font-weight: bold; 
@@ -60,9 +63,9 @@
   }
   
   .description2 {
-    font-size: 1.2rem; /* 説明文のサイズ */
-    line-height: 1.5; /* 行間 */
-    max-width: 500px; /* 説明文の横幅を制限 */
+    font-size: 1.2rem; 
+    line-height: 1.5; 
+    max-width: 500px; 
   }
   
     
