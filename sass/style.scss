@@ -118,6 +118,28 @@ body.dark-mode .movie-card h3 {
   color: rgb(69, 179, 38);
 }
 
+.footer {
+  background-color: #ed9517;
+  color: #fff;
+  padding: 20px 0;
+}
+
+
+.footer-sentences {
+  text-align: center;
+  color: #000;
+  // text-decoration: .5px solid #000 ;
+  // padding-top: 10px;
+  font-size: 0.8em;
+  // border-top: 1px solid #444;
+  margin-top: 20px;
+}
+body.dark-mode .footer{
+  background-color: #775999;
+}
+body.dark-mode .footer-sentences {
+  color: rgb(69, 179, 38);
+}
   
 
   @media (max-width: 860px) {

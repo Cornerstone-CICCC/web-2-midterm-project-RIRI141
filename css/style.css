@@ -212,7 +212,7 @@ body.dark-mode .tv-show-card h3 {
   background-color: #ede8e8;
   border-radius: 8px;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 6rem;
   text-align: center;
 }
 
@@ -349,6 +349,27 @@ body.dark-mode header {
 }
 
 body.dark-mode .movie-card h3 {
+  color: rgb(69, 179, 38);
+}
+
+.footer {
+  background-color: #ed9517;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-sentences {
+  text-align: center;
+  color: #000;
+  font-size: 0.8em;
+  margin-top: 20px;
+}
+
+body.dark-mode .footer {
+  background-color: #775999;
+}
+
+body.dark-mode .footer-sentences {
   color: rgb(69, 179, 38);
 }
 
