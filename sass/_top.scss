@@ -21,6 +21,9 @@
   display: block;
   border-bottom: 2px solid #969696;
 }
+.movie-card img:hover {
+  cursor: pointer;
+}
 .movie-card h3 {
   margin: 10px;
   font-size: 18px;

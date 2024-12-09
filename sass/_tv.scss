@@ -23,6 +23,9 @@
     display: block;
     border-bottom: 2px solid #969696;
   }
+  .tv-show-card img:hover {
+   cursor: pointer;
+  }
   .tv-show-card h3 {
     margin: 10px;
     font-size: 18px;
@@ -30,7 +33,7 @@
     color: #ed9517; 
   }
   body.dark-mode .tv-show-card h3 {
-    color: rgb(84, 220, 47);
+    color: rgb(69, 179, 38);
   }
   .tv-show-card h3:hover{
     transition: all .3s ease 0s;

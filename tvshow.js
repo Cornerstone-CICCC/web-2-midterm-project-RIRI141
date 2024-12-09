@@ -7,62 +7,6 @@ const options = {
   },
 };
 
-// function fetchTrendingMovies() {
-//   fetch(
-//     "https://api.themoviedb.org/3/trending/movie/day?language=en-US",
-//     options
-//   )
-//     .then((res) => res.json())
-//     // .then((res) => console.log(res.results))
-//     .then((res) => displayMovies(res.results))
-//     .catch((err) => console.error(err));
-// }
-
-// function displayMovies(movies) {
-//   const moviesContainer = document.getElementById("movies");
-//   moviesContainer.innerHTML = "";
-//   movies.forEach((movie) => {
-//     const movieCard = document.createElement("div");
-//     movieCard.className = "movie-card";
-//     movieCard.innerHTML = `
-//         <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-//         <h3>${movie.title}</h3>
-//       `;
-
-//     movieCard.addEventListener("click", () => openModal(movie));
-
-//     function openModal(movie) {
-//       const overlay = document.createElement("div");
-//       overlay.className = "overlay";
-
-//       const modal = document.createElement("div");
-//       modal.className = "modal";
-
-//       modal.innerHTML = `
-//       <div class="modal-container">
-//        <div class=modal-img>
-//          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-//        </div>
-//        <div class="modal-text">
-//          <h2>${movie.title}</h2>
-//          <p>${movie.overview}</p>
-//        </div>
-//       </div>
-//       `;
-
-//       overlay.appendChild(modal);
-//       document.body.appendChild(overlay);
-
-//       overlay.addEventListener("click", (event) => {
-//         if (event.target === overlay) {
-//           document.body.removeChild(overlay);
-//         }
-//       });
-//     }
-//     moviesContainer.appendChild(movieCard);
-//   });
-// }
-
 function fetchTrendingTVShows() {
   fetch("https://api.themoviedb.org/3/trending/tv/day?language=en-US", options)
     .then((res) => res.json())
@@ -117,16 +61,6 @@ function displayTVShows(tvShows) {
   });
 }
 
-// function fetchMoviesVideos() {
-//   fetch(
-//     "https://api.themoviedb.org/3/movie/movie_id/videos?language=en-US",
-//     options
-//   )
-//     .then((res) => res.json())
-//     .then((res) => console.log(res))
-//     .catch((err) => console.error(err));
-// }
-
 document.getElementById("search-bar").addEventListener("input", (e) => {
   const searchQuery = e.target.value.toLowerCase();
   const tvs = document.querySelectorAll(".tv-show-card");
@@ -137,16 +71,34 @@ document.getElementById("search-bar").addEventListener("input", (e) => {
   });
 });
 
-// document.getElementById("showtoday").innerHTML = showtoday();
-// function showtoday() {
-//   const now = new Date();
-//   const year = now.getFullYear();
-//   const month = now.getMonth() + 1;
-//   const date = now.getDate();
+document.getElementById("search-bar").addEventListener("input", (e) => {
+  const searchQuery = e.target.value.trim();
+  if (searchQuery === "") {
+    fetchTrendingTVShows();
+  } else {
+    fetchSearchedTvs(searchQuery);
+  }
+});
 
-//   const showtoday = year + "/" + month + "/" + date + " NOW";
-//   return showtoday;
-// }
+function fetchSearchedTvs(query) {
+  const searchUrl = `https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(
+    query
+  )}&include_adult=false&language=en-US&page=1`;
 
-// window.addEventListener("load", fetchTrendingMovies);
+  fetch(searchUrl, options)
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.results.length > 0) {
+        displayTVShows(res.results);
+      } else {
+        displayNoResults();
+      }
+    })
+    .catch((err) => console.error(err));
+}
+
+function displayNoResults() {
+  const tvShowsContainer = document.getElementById("tv-shows");
+  tvShowsContainer.innerHTML = "<p>No TV shows found. Try another search.</p>";
+}
 window.addEventListener("load", fetchTrendingTVShows);

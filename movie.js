@@ -62,15 +62,35 @@ function displayMovies(movies) {
     moviesContainer.appendChild(movieCard);
   });
 }
-
 document.getElementById("search-bar").addEventListener("input", (e) => {
-  const searchQuery = e.target.value.toLowerCase();
-  const movies = document.querySelectorAll(".movie-card");
-
-  movies.forEach((movie) => {
-    const title = movie.querySelector("h3").textContent.toLowerCase();
-    movie.style.display = title.includes(searchQuery) ? "" : "none";
-  });
+  const searchQuery = e.target.value.trim();
+  if (searchQuery === "") {
+    fetchTrendingMovies();
+  } else {
+    fetchSearchedMovies(searchQuery);
+  }
 });
+
+function fetchSearchedMovies(query) {
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+    query
+  )}&include_adult=false&language=en-US&page=1`;
+
+  fetch(searchUrl, options)
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.results.length > 0) {
+        displayMovies(res.results);
+      } else {
+        displayNoResults();
+      }
+    })
+    .catch((err) => console.error(err));
+}
+
+function displayNoResults() {
+  const moviesContainer = document.getElementById("movies");
+  moviesContainer.innerHTML = "<p>No movies found. Try another search.</p>";
+}
 
 window.addEventListener("load", fetchTrendingMovies);
